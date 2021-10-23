@@ -56,7 +56,6 @@ with row1_1:
 
 def main():
     # Twitter API Connection #
-    from credentials import api_key, api_key_secret, access_token, access_token_secret
 
     auth = tw.OAuthHandler(api_key, api_key_secret)
     auth.set_access_token(access_token, access_token_secret)
