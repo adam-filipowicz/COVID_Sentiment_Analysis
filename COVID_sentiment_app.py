@@ -1,8 +1,3 @@
-"""
-Created on Wed Oct 20 15:22:00 2021
-@author: Adam Filipowicz
-"""
-
 import streamlit as st
 import pandas as pd
 import tweepy as tw
@@ -72,8 +67,7 @@ def main():
 
     def get_tweets(topic, count):
         i = 0
-        for tweet in tw.Cursor(api.search_tweets, q=topic, count=100, lang='en',
-                               exclude='retweets').items():
+        for tweet in tw.Cursor(api.search_tweets, q=topic + ' -filter:retweets', count=100, lang='en').items():
             df.loc[i, "user_name"] = tweet.user.name
             df.loc[i, "user_followers"] = tweet.user.followers_count
             df.loc[i, "user_verified"] = tweet.user.verified
@@ -117,7 +111,7 @@ def main():
     with row2_1:
         topic = st.selectbox("Topic", (
             'Booster', 'COVID', 'J&J', 'Mandate', 'Mask', 'Moderna', 'mRNA', 'Pfizer', 'Vaccine',
-            'Virus'
+            'Virus', 'Wuhan'
         ), index=1)
 
         count = st.slider(
@@ -204,29 +198,32 @@ def main():
 
         with row5_1, _lock:
             st.subheader('Most Popular Words in All Tweets')
+            fig, ax = plt.subplots()
             words = ' '.join([word for word in data['text']])
             word_cloud = WordCloud(width=1000, height=500, random_state=20, max_font_size=120).generate(words)
             plt.imshow(word_cloud, interpolation='bilinear')
             plt.axis('off')
-            st.pyplot()
+            st.pyplot(fig)
 
         with row5_2, _lock:
             st.subheader("Most Popular Words in Positive Tweets")
+            fig, ax = plt.subplots()
             positive = data[data['label'] == 'positive']
             words = ' '.join([word for word in positive['text']])
             word_cloud = WordCloud(width=1000, height=500, random_state=20, max_font_size=120).generate(words)
             plt.imshow(word_cloud, interpolation='bilinear')
             plt.axis('off')
-            st.pyplot()
+            st.pyplot(fig)
 
         with row5_3, _lock:
             st.subheader("Most Popular Words in Negative Tweets")
+            fig, ax = plt.subplots()
             negative = data[data['label'] == 'negative']
             words = ' '.join([word for word in negative['text']])
             word_cloud = WordCloud(width=1000, height=500, random_state=20, max_font_size=120).generate(words)
             plt.imshow(word_cloud, interpolation='bilinear')
             plt.axis('off')
-            st.pyplot()
+            st.pyplot(fig)
 
 
 if __name__ == '__main__':
