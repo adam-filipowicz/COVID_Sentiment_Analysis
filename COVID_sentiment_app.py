@@ -3,8 +3,8 @@ import pandas as pd
 import tweepy as tw
 from wordcloud import WordCloud
 import string
+import nltk
 from nltk.corpus import stopwords
-nltk.download('stopwords')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.sentiment.util import *
 import matplotlib
