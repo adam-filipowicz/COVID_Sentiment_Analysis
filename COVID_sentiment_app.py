@@ -8,6 +8,7 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.sentiment.util import *
+nltk.download('vader_lexicon')
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
