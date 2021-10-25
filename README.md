@@ -14,3 +14,5 @@ A sentiment analysis of Twitter data related to COVID-19 and the vaccines, origi
  **The COVID Sentiment app scrapes Twitter for recent tweets about COVID-19 and related topics, and then analyzes whether those tweets have a positive, negative, or 
  neutral sentiment. Some helpful data visualizations are then presented. You can choose from a variety of topics, and then choose how many tweets you'd like to 
  analyze.**
+
+**The Project Proposal iPython notebook contains an analysis of data obtained from Kaggle, and served as the original project proposal and proof-of-concept for data analysis and presentation.**
